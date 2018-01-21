@@ -64,7 +64,7 @@ public class EditSubscriptionActivity extends AppCompatActivity {
         try {
             price = Double.parseDouble(editprice.getText().toString());
         } catch(NumberFormatException e) {
-            Snackbar.make(findViewById(android.R.id.content), "must enter a price", Snackbar.LENGTH_LONG).show();
+            makeSnackBar("must enter a valid price");
             return null;
         }
 
@@ -73,9 +73,16 @@ public class EditSubscriptionActivity extends AppCompatActivity {
         try {
             sub = new Subscription(name, price, comment);
         } catch(InvalidParameterException e) {
-            Snackbar.make(findViewById(android.R.id.content), e.getMessage(), Snackbar.LENGTH_LONG).show();
+            makeSnackBar(e.getMessage());
             return null;
         }
         return sub;
+    }
+
+    public void makeSnackBar(String message) {
+        Snackbar snackbar;
+        snackbar = Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_LONG);
+        snackbar.setAction("Action", null);
+        snackbar.show();
     }
 }
