@@ -24,6 +24,20 @@ public class EditSubscriptionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_subscription);
+
+        Intent intent = getIntent();
+
+        Subscription sub = (Subscription) intent.getSerializableExtra(SUBSCRIPTION_EXTRA);
+
+        if (sub != null) {
+            EditText editname    = (EditText) findViewById(R.id.editName);
+            EditText editcomment = (EditText) findViewById(R.id.editComment);
+            EditText editprice   = (EditText) findViewById(R.id.editPrice);
+
+            editname.setText(sub.getName());
+            editcomment.setText(sub.getComment());
+            editprice.setText(String.format("%.2f", sub.getCharge()));
+        }
     }
 
     @Override

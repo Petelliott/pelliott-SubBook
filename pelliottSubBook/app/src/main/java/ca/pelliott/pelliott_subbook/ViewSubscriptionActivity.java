@@ -2,7 +2,9 @@ package ca.pelliott.pelliott_subbook;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.TextView;
 
 import static ca.pelliott.pelliott_subbook.EditSubscriptionActivity.SUBSCRIPTION_EXTRA;
@@ -12,14 +14,42 @@ import static ca.pelliott.pelliott_subbook.EditSubscriptionActivity.SUBSCRIPTION
  */
 
 public class ViewSubscriptionActivity extends AppCompatActivity {
+    static final int EDIT_SUBSCRIPTION_REQUEST = 1;
+
+    private Subscription sub;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_subscription);
 
         Intent intent = getIntent();
-        Subscription sub = (Subscription) intent.getSerializableExtra(SUBSCRIPTION_EXTRA);
+        sub = (Subscription) intent.getSerializableExtra(SUBSCRIPTION_EXTRA);
 
+        showSubcription(sub);
+
+        FloatingActionButton fabEdit = (FloatingActionButton) findViewById(R.id.editSub);
+
+        fabEdit.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), EditSubscriptionActivity.class);
+
+                intent.putExtra(SUBSCRIPTION_EXTRA, sub);
+
+                startActivityForResult(intent, EDIT_SUBSCRIPTION_REQUEST);
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int request, int result, Intent intent) {
+        if (request == EDIT_SUBSCRIPTION_REQUEST && result == RESULT_OK) {
+            sub = (Subscription) intent.getSerializableExtra(SUBSCRIPTION_EXTRA);
+            showSubcription(sub);
+        }
+    }
+
+    private void showSubcription(Subscription sub) {
         TextView showName    = (TextView) findViewById(R.id.showName);
         TextView showComment = (TextView) findViewById(R.id.showComment);
         TextView showDate    = (TextView) findViewById(R.id.showDate);
