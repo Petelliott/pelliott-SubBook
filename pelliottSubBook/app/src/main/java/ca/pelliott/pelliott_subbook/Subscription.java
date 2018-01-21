@@ -1,5 +1,6 @@
 package ca.pelliott.pelliott_subbook;
 
+import java.io.Serializable;
 import java.security.InvalidParameterException;
 import java.util.Date;
 
@@ -7,7 +8,7 @@ import java.util.Date;
  * Created by peter on 20/01/18.
  */
 
-public class Subscription {
+public class Subscription implements Serializable{
     private String name;  // max 20 characters
     private Date date;
     private double charge;

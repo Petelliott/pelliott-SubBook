@@ -9,16 +9,21 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
+import static ca.pelliott.pelliott_subbook.EditSubscriptionActivity.SUBSCRIPTION_EXTRA;
+
 public class MainActivity extends AppCompatActivity {
+    static final int NEW_SUBSCRIPTION_REQUEST = 0;
+
+    private ArrayList<Subscription> subscriptions;
+    private SubscriptionArrayAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ArrayList<Subscription> testarray = makeTestData(50);
-
-        SubscriptionArrayAdapter adapter = new SubscriptionArrayAdapter(this, testarray);
+        subscriptions = new ArrayList<Subscription>();
+        adapter = new SubscriptionArrayAdapter(this, subscriptions);
 
         ListView listview = (ListView) findViewById(R.id.ListView);
         listview.setAdapter(adapter);
@@ -29,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), EditSubscriptionActivity.class);
 
-                startActivity(intent);
+                startActivityForResult(intent, NEW_SUBSCRIPTION_REQUEST);
             }
         });
 
@@ -49,5 +54,15 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return subs;
+    }
+
+    @Override
+    protected void onActivityResult(int request, int result, Intent intent) {
+        if (request == NEW_SUBSCRIPTION_REQUEST && result == RESULT_OK) {
+            Subscription sub = (Subscription) intent.getSerializableExtra(SUBSCRIPTION_EXTRA);
+            subscriptions.add(sub);
+
+            adapter.notifyDataSetChanged();
+        }
     }
 }
