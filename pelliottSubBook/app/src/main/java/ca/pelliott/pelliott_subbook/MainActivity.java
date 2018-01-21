@@ -5,6 +5,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -38,6 +39,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapter, View view, int position, long id) {
+                Subscription sub = (Subscription) adapter.getItemAtPosition(position);
+
+                Intent intent = new Intent(view.getContext(), ViewSubscriptionActivity.class);
+                intent.putExtra(SUBSCRIPTION_EXTRA, sub);
+
+                startActivity(intent);
+            }
+        });
     }
 
     private ArrayList<Subscription> makeTestData(int n) {
