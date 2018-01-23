@@ -14,6 +14,9 @@ public final class SubscriptionList {
         sublist = new ArrayList<>();
     }
 
+    // make sure SubscriptionList cant be instantiated
+    private SubscriptionList() {}
+
     public static Subscription getSubscr(int index) {
         return sublist.get(index);
     }

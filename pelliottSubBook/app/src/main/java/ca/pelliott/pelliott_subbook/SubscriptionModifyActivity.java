@@ -11,7 +11,8 @@ import android.widget.EditText;
 import java.security.InvalidParameterException;
 
 /**
- * Created by peter on 22/01/18.
+ * provides an abstract class for the subscription editing screen
+ * used by EditSubscriptionActivity and NewSubscriptionActivity
  */
 
 public abstract class SubscriptionModifyActivity extends AppCompatActivity {

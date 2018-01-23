@@ -5,7 +5,7 @@ import android.widget.EditText;
 import java.security.InvalidParameterException;
 
 /**
- * Created by peter on 22/01/18.
+ * creates a new subscription and adds it to SubscriptionList
  */
 
 public class NewSubscriptionActivity extends SubscriptionModifyActivity {

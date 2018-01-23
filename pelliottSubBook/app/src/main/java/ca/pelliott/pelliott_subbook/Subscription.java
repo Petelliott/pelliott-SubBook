@@ -5,7 +5,11 @@ import java.security.InvalidParameterException;
 import java.util.Date;
 
 /**
- * Created by peter on 20/01/18.
+ * Subscription holds:
+ * String name    (1-20 characters)
+ * Date date      (valid date)
+ * double charge  (non negative)
+ * String comment (less than 30)
  */
 
 public class Subscription implements Serializable{

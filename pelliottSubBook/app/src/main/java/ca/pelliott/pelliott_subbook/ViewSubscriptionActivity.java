@@ -10,7 +10,7 @@ import android.widget.TextView;
 import static ca.pelliott.pelliott_subbook.EditSubscriptionActivity.SUBSCRIPTION_EXTRA;
 
 /**
- * Created by peter on 21/01/18.
+ * gets passed an index to display and provides the option to edit
  */
 
 public class ViewSubscriptionActivity extends AppCompatActivity {

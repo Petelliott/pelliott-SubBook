@@ -21,20 +21,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        adapter = new SubscriptionArrayAdapter(this, SubscriptionList.getArray());
-
         ListView listview = (ListView) findViewById(R.id.ListView);
+
+        // set the adapter
+        adapter = new SubscriptionArrayAdapter(this, SubscriptionList.getArray());
         listview.setAdapter(adapter);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.floatingActionButton);
-
-        fab.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), NewSubscriptionActivity.class);
-
-                startActivity(intent);
-            }
-        });
+        // set the listener for list items
 
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -46,27 +39,24 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-    }
 
-    private ArrayList<Subscription> makeTestData(int n) {
-        ArrayList<Subscription> subs = new ArrayList<Subscription>();
+        // set the listener for new subscriptions
 
-        for (int i = 0; i < n; i++) {
-            Subscription sub = new Subscription(
-                    "peter monthly",
-                    (double) i,
-                    "this is a commment"
-            );
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.floatingActionButton);
 
-            subs.add(sub);
-        }
+        fab.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), NewSubscriptionActivity.class);
 
-        return subs;
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        // make sure that we show the newest data
         adapter.notifyDataSetChanged();
     }
 }

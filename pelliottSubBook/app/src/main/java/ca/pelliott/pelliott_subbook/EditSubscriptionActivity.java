@@ -13,7 +13,8 @@ import android.widget.EditText;
 import java.security.InvalidParameterException;
 
 /**
- * Created by peter on 20/01/18.
+ * the EditSubscriptionActivity is passed the index of the Subscription
+ * in SubscriptionList. it handles updating the subscription
  */
 
 public class EditSubscriptionActivity extends SubscriptionModifyActivity {
@@ -24,11 +25,13 @@ public class EditSubscriptionActivity extends SubscriptionModifyActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_subscription);
+        // get the index passed by ViewSubscriptionActivity
 
         Intent intent = getIntent();
 
         sub = SubscriptionList.getSubscr(intent.getIntExtra(SUBSCRIPTION_EXTRA, -1));
+
+        // show the data from the edited subscription
 
         EditText editname    = (EditText) findViewById(R.id.editName);
         EditText editcomment = (EditText) findViewById(R.id.editComment);
