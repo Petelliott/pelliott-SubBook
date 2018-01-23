@@ -24,7 +24,8 @@ public class ViewSubscriptionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view_subscription);
 
         Intent intent = getIntent();
-        sub = (Subscription) intent.getSerializableExtra(SUBSCRIPTION_EXTRA);
+        final int index = intent.getIntExtra(SUBSCRIPTION_EXTRA, -1);
+        sub = SubscriptionList.getSubscr(index);
 
         showSubcription(sub);
 
@@ -33,20 +34,17 @@ public class ViewSubscriptionActivity extends AppCompatActivity {
         fabEdit.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), EditSubscriptionActivity.class);
+                intent.putExtra(SUBSCRIPTION_EXTRA, index);
 
-                intent.putExtra(SUBSCRIPTION_EXTRA, sub);
-
-                startActivityForResult(intent, EDIT_SUBSCRIPTION_REQUEST);
+                startActivity(intent);
             }
         });
     }
 
     @Override
-    protected void onActivityResult(int request, int result, Intent intent) {
-        if (request == EDIT_SUBSCRIPTION_REQUEST && result == RESULT_OK) {
-            sub = (Subscription) intent.getSerializableExtra(SUBSCRIPTION_EXTRA);
-            showSubcription(sub);
-        }
+    public void onResume() {
+        super.onResume();
+        showSubcription(sub);
     }
 
     private void showSubcription(Subscription sub) {

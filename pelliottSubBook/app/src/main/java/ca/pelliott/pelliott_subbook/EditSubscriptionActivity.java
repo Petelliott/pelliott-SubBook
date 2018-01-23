@@ -16,9 +16,10 @@ import java.security.InvalidParameterException;
  * Created by peter on 20/01/18.
  */
 
-public class EditSubscriptionActivity extends AppCompatActivity {
+public class EditSubscriptionActivity extends SubscriptionModifyActivity {
 
     public static final String SUBSCRIPTION_EXTRA = "ca.pelliott.SUBSCRIPTION_EXTRA";
+    private Subscription sub;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,47 +28,19 @@ public class EditSubscriptionActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        Subscription sub = (Subscription) intent.getSerializableExtra(SUBSCRIPTION_EXTRA);
+        sub = SubscriptionList.getSubscr(intent.getIntExtra(SUBSCRIPTION_EXTRA, -1));
 
-        if (sub != null) {
-            EditText editname    = (EditText) findViewById(R.id.editName);
-            EditText editcomment = (EditText) findViewById(R.id.editComment);
-            EditText editprice   = (EditText) findViewById(R.id.editPrice);
+        EditText editname    = (EditText) findViewById(R.id.editName);
+        EditText editcomment = (EditText) findViewById(R.id.editComment);
+        EditText editprice   = (EditText) findViewById(R.id.editPrice);
 
-            editname.setText(sub.getName());
-            editcomment.setText(sub.getComment());
-            editprice.setText(String.format("%.2f", sub.getCharge()));
-        }
+        editname.setText(sub.getName());
+        editcomment.setText(sub.getComment());
+        editprice.setText(String.format("%.2f", sub.getCharge()));
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // from https://developer.android.com/guide/topics/ui/menus.html
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.edit_sub_menu, menu);
-        return true;
-    }
-
-    // from https://developer.android.com/guide/topics/ui/menus.html
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.done:
-                Subscription sub = checkSubscription();
-                if (sub != null) {
-                    Intent data = new Intent(this, MainActivity.class);
-
-                    data.putExtra(SUBSCRIPTION_EXTRA, sub);
-                    setResult(RESULT_OK, data);
-                    finish();
-                }
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
-    private Subscription checkSubscription() {
+    protected void onEditFinish() {
         EditText editname    = (EditText) findViewById(R.id.editName);
         EditText editcomment = (EditText) findViewById(R.id.editComment);
         EditText editprice   = (EditText) findViewById(R.id.editPrice);
@@ -79,24 +52,20 @@ public class EditSubscriptionActivity extends AppCompatActivity {
             price = Double.parseDouble(editprice.getText().toString());
         } catch(NumberFormatException e) {
             makeSnackBar("must enter a valid price");
-            return null;
+            return;
         }
-
-        Subscription sub;
 
         try {
-            sub = new Subscription(name, price, comment);
+            sub.setName(name);
+            sub.setComment(comment);
+            sub.setCharge(price);
         } catch(InvalidParameterException e) {
             makeSnackBar(e.getMessage());
-            return null;
+            return;
         }
-        return sub;
+
+        setResult(RESULT_OK);
+        finish();
     }
 
-    public void makeSnackBar(String message) {
-        Snackbar snackbar;
-        snackbar = Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_LONG);
-        snackbar.setAction("Action", null);
-        snackbar.show();
-    }
 }

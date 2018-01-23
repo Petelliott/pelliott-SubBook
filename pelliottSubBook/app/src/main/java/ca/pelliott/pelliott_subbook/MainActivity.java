@@ -13,9 +13,7 @@ import java.util.ArrayList;
 import static ca.pelliott.pelliott_subbook.EditSubscriptionActivity.SUBSCRIPTION_EXTRA;
 
 public class MainActivity extends AppCompatActivity {
-    static final int NEW_SUBSCRIPTION_REQUEST = 0;
 
-    private ArrayList<Subscription> subscriptions;
     private SubscriptionArrayAdapter adapter;
 
     @Override
@@ -23,8 +21,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        subscriptions = new ArrayList<Subscription>();
-        adapter = new SubscriptionArrayAdapter(this, subscriptions);
+        adapter = new SubscriptionArrayAdapter(this, SubscriptionList.getArray());
 
         ListView listview = (ListView) findViewById(R.id.ListView);
         listview.setAdapter(adapter);
@@ -33,19 +30,18 @@ public class MainActivity extends AppCompatActivity {
 
         fab.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), EditSubscriptionActivity.class);
+                Intent intent = new Intent(v.getContext(), NewSubscriptionActivity.class);
 
-                startActivityForResult(intent, NEW_SUBSCRIPTION_REQUEST);
+                startActivity(intent);
             }
         });
 
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapter, View view, int position, long id) {
-                Subscription sub = (Subscription) adapter.getItemAtPosition(position);
 
                 Intent intent = new Intent(view.getContext(), ViewSubscriptionActivity.class);
-                intent.putExtra(SUBSCRIPTION_EXTRA, sub);
+                intent.putExtra(SUBSCRIPTION_EXTRA, position);
 
                 startActivity(intent);
             }
@@ -69,12 +65,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onActivityResult(int request, int result, Intent intent) {
-        if (request == NEW_SUBSCRIPTION_REQUEST && result == RESULT_OK) {
-            Subscription sub = (Subscription) intent.getSerializableExtra(SUBSCRIPTION_EXTRA);
-            subscriptions.add(sub);
-
-            adapter.notifyDataSetChanged();
-        }
+    public void onResume() {
+        super.onResume();
+        adapter.notifyDataSetChanged();
     }
 }

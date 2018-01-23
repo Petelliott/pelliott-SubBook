@@ -20,6 +20,12 @@
             android:windowSoftInputMode="adjustResize">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ViewSubscriptionActivity" />
+        </activity>
+        <activity android:name=".NewSubscriptionActivity"
+            android:windowSoftInputMode="adjustResize">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
         <activity android:name=".ViewSubscriptionActivity"
