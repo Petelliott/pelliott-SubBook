@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -57,5 +60,26 @@ public class ViewSubscriptionActivity extends AppCompatActivity {
         showComment.setText(sub.getComment());
         showDate.setText(sub.getDate().toString());
         showPrice.setText(String.format("$%.2f", sub.getCharge()));
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // from https://developer.android.com/guide/topics/ui/menus.html
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.view_sub_menu, menu);
+        return true;
+    }
+
+    // from https://developer.android.com/guide/topics/ui/menus.html
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.delete:
+                SubscriptionList.remove(sub);
+                finish(); // end the activity so we remove the invalid reference
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

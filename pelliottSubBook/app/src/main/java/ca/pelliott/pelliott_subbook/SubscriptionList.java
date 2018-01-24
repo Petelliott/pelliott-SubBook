@@ -25,6 +25,16 @@ public final class SubscriptionList {
         sublist.add(sub);
     }
 
+    // WARNING: this function will invalidate all indexes you have lying around.
+    // make sure to account for this
+    public static void remove(int index) {
+        sublist.remove(index);
+    }
+
+    public static void remove(Subscription sub) {
+        sublist.remove(sub);
+    }
+
     public static ArrayList<Subscription> getArray() {
         return sublist;
     }
