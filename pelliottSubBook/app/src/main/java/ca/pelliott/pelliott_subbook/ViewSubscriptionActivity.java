@@ -1,8 +1,10 @@
 package ca.pelliott.pelliott_subbook;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -75,8 +77,27 @@ public class ViewSubscriptionActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.delete:
-                SubscriptionList.remove(sub);
-                finish(); // end the activity so we remove the invalid reference
+                AlertDialog.Builder confirm = new AlertDialog.Builder(this);
+                confirm.setMessage("are you sure you want to delete this Subscription?");
+
+                // idea from http://jymden.com/android-simple-confirm-dialog/
+                confirm.setPositiveButton("delete", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        SubscriptionList.remove(sub);
+                        finish(); // end the activity so we remove the invalid reference
+                    }
+                });
+
+                confirm.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+                confirm.show();
+
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
