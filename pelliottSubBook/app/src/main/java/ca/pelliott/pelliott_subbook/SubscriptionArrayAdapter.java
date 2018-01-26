@@ -10,7 +10,11 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 /**
- * Created by peter on 20/01/18.
+ * SubscriptionArrayAdapter is an ArrayAdapter<Subscription> that
+ * displays arrays according to R.layout.sub_list_item
+ * and displays the total price as the first element according to
+ * R.layout.sub_list_total
+ * NOTE: be sure to account for the total in your onclick listener
  */
 
 // the idea for this class and its layout from:
@@ -28,9 +32,12 @@ public class SubscriptionArrayAdapter extends ArrayAdapter<Subscription> {
     @Override
     public View getView(int position, View view, ViewGroup parent) {
         if (position == 0) {
+            // create the total list element
             if (view == null) {
                 // this line was modified from the afformentioned demo
                 view = LayoutInflater.from(getContext()).inflate(R.layout.sub_list_total, parent, false);
+                // counter intuitive, but this disables clicking
+                view.setClickable(true);
             }
 
             double totalPrice = 0;
@@ -44,6 +51,7 @@ public class SubscriptionArrayAdapter extends ArrayAdapter<Subscription> {
 
             return view;
         } else {
+            // create the other list elements
             position -= 1;
             if (view == null) {
                 // this line was modified from the afformentioned demo

@@ -33,10 +33,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapter, View view, int position, long id) {
 
-                Intent intent = new Intent(view.getContext(), ViewSubscriptionActivity.class);
-                intent.putExtra(SUBSCRIPTION_EXTRA, position);
+                if (position > 0) {
+                    // handle total case
+                    position -= 1;
 
-                startActivity(intent);
+                    Intent intent = new Intent(view.getContext(), ViewSubscriptionActivity.class);
+                    intent.putExtra(SUBSCRIPTION_EXTRA, position);
+
+                    startActivity(intent);
+                }
             }
         });
 
