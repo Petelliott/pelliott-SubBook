@@ -16,6 +16,7 @@ import static ca.pelliott.pelliott_subbook.EditSubscriptionActivity.SUBSCRIPTION
 
 /**
  * gets passed an index to display and provides the option to edit
+ * as well as delete
  */
 
 public class ViewSubscriptionActivity extends AppCompatActivity {
@@ -57,11 +58,22 @@ public class ViewSubscriptionActivity extends AppCompatActivity {
         TextView showComment = (TextView) findViewById(R.id.showComment);
         TextView showDate    = (TextView) findViewById(R.id.showDate);
         TextView showPrice   = (TextView) findViewById(R.id.showPrice);
+        TextView showInfo    = (TextView) findViewById(R.id.showInfo);
 
         showName.setText(sub.getName());
         showComment.setText(sub.getComment());
         showDate.setText(sub.getDate().toString());
         showPrice.setText(String.format("$%.2f", sub.getCharge()));
+
+        double total = 0;
+
+        for (Subscription i: SubscriptionList.getArray()) {
+            total += i.getCharge();
+        }
+
+        double percent = 100.0 * sub.getCharge() / total;
+
+        showInfo.setText(String.format("This subscription is %.0f%% of your monthly total", percent));
     }
 
     @Override
