@@ -29,7 +29,7 @@ public class EditSubscriptionActivity extends SubscriptionModifyActivity {
 
         Intent intent = getIntent();
 
-        sub = SubscriptionList.getSubscr(intent.getIntExtra(SUBSCRIPTION_EXTRA, -1));
+        sub = SubscriptionList.getInstance(getBaseContext()).getSubscr(intent.getIntExtra(SUBSCRIPTION_EXTRA, -1));
 
         // show the data from the edited subscription
 

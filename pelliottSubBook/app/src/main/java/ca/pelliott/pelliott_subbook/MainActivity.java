@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         ListView listview = (ListView) findViewById(R.id.ListView);
 
         // set the adapter
-        adapter = new SubscriptionArrayAdapter(this, SubscriptionList.getArray());
+        adapter = new SubscriptionArrayAdapter(this, SubscriptionList.getInstance(getBaseContext()).getArray());
         listview.setAdapter(adapter);
 
         // set the listener for list items

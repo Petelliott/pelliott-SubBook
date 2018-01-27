@@ -34,7 +34,7 @@ public class NewSubscriptionActivity extends SubscriptionModifyActivity {
             return;
         }
 
-        SubscriptionList.addSubscr(sub);
+        SubscriptionList.getInstance(getBaseContext()).addSubscr(sub);
         setResult(RESULT_OK);
         finish();
     }

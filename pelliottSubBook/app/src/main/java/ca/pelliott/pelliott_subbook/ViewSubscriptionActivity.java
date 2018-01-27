@@ -31,7 +31,7 @@ public class ViewSubscriptionActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         final int index = intent.getIntExtra(SUBSCRIPTION_EXTRA, -1);
-        sub = SubscriptionList.getSubscr(index);
+        sub = SubscriptionList.getInstance(getBaseContext()).getSubscr(index);
 
         showSubcription(sub);
 
@@ -67,7 +67,7 @@ public class ViewSubscriptionActivity extends AppCompatActivity {
 
         double total = 0;
 
-        for (Subscription i: SubscriptionList.getArray()) {
+        for (Subscription i: SubscriptionList.getInstance(getBaseContext()).getArray()) {
             total += i.getCharge();
         }
 
@@ -96,7 +96,7 @@ public class ViewSubscriptionActivity extends AppCompatActivity {
                 confirm.setPositiveButton("delete", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
-                        SubscriptionList.remove(sub);
+                        SubscriptionList.getInstance(getBaseContext()).remove(sub);
                         finish(); // end the activity so we remove the invalid reference
                     }
                 });
