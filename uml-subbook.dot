@@ -13,10 +13,19 @@ digraph G {
 
     MainActivity[shape=record,label="{MainActivity||}"];
     ViewSubscriptionActivity[shape=record,label="{ViewSubscriptionActivity||}"];
-    modifySubscriptionActivity[shape=record,label="{ModifySubscriptionActivity||}"];
+    SubscriptionModifyActivity[shape=record,label="{SubscriptionModifyActivity||# onEditFinish()}"];
 
     MainActivity->SubscriptionList[arrowhead="none"];
     ViewSubscriptionActivity->SubscriptionList[arrowhead="none"];
     ViewSubscriptionActivity->MainActivity[arrowhead="none"];
-    
+    SubscriptionModifyActivity->SubscriptionList[arrowhead="none"];
+
+    EditSubscriptionActivity[shape=record,label="{EditSubscriptionActivity||}"];
+    NewSubscriptionActivity[shape=record,label="{NewSubscriptionActivity||}"];
+
+    EditSubscriptionActivity->SubscriptionModifyActivity[arrowhead="onormal"];
+    NewSubscriptionActivity->SubscriptionModifyActivity[arrowhead="onormal"];
+
+    NewSubscriptionActivity->MainActivity[arrowhead="none"];
+    EditSubscriptionActivity->ViewSubscriptionActivity[arrowhead="none"];
 }
