@@ -33,7 +33,7 @@
         android:layout_marginRight="16dp" />
 
     <TextView
-        android:id="@+id/LIcomment"
+        android:id="@+id/LIdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Comment"

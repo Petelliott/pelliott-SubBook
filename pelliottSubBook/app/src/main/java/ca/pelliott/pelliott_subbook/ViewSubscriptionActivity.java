@@ -12,6 +12,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
 import static ca.pelliott.pelliott_subbook.EditSubscriptionActivity.SUBSCRIPTION_EXTRA;
 
 /**
@@ -62,7 +65,9 @@ public class ViewSubscriptionActivity extends AppCompatActivity {
 
         showName.setText(sub.getName());
         showComment.setText(sub.getComment());
-        showDate.setText(sub.getDate().toString());
+
+        DateFormat datef = new SimpleDateFormat("yyyy-mm-dd");
+        showDate.setText(datef.format(sub.getDate()));
         showPrice.setText(String.format("$%.2f", sub.getCharge()));
 
         double total = 0;

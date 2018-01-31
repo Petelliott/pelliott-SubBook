@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 /**
@@ -62,11 +64,13 @@ public class SubscriptionArrayAdapter extends ArrayAdapter<Subscription> {
 
             TextView name    = (TextView) view.findViewById(R.id.LIname);
             TextView price   = (TextView) view.findViewById(R.id.LIprice);
-            TextView comment = (TextView) view.findViewById(R.id.LIcomment);
+            TextView date    = (TextView) view.findViewById(R.id.LIdate);
 
             name.setText(sub.getName());
             price.setText(String.format("$%.2f", sub.getCharge()));
-            comment.setText(sub.getComment());
+
+            DateFormat datef = new SimpleDateFormat("yyyy-mm-dd");
+            date.setText(datef.format(sub.getDate()));
 
             return view;
         }
