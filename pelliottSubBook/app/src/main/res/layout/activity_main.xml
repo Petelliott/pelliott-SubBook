@@ -18,7 +18,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- from https://guides.codepath.com/android/floating-action-buttons-->
+    <!-- from https://guides.codepath.com/android/floating-action-buttons
+         2018-01-20 (MIT)-->
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/floatingActionButton"
         android:layout_margin="16dp"
