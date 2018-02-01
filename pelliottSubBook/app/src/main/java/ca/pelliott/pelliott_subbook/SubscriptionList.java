@@ -73,8 +73,8 @@ public class SubscriptionList {
 
             Gson gson = new Gson();
 
-            //from https://stackoverflow.com/questions/12384064/gson-convert-from-json-to-a-typed-arraylistt
-            //26-01-2018
+            //from https://stackoverflow.com/questions/12384064/gson-convert-from-json-to-a-typed-arraylist
+            //26-01-2018 (CC-BY-SA)
             sublist = gson.fromJson(in, new TypeToken<ArrayList<Subscription>>(){}.getType());
 
 

@@ -15,10 +15,13 @@ digraph G {
     ViewSubscriptionActivity[shape=record,label="{ViewSubscriptionActivity||}"];
     SubscriptionModifyActivity[shape=record,label="{SubscriptionModifyActivity||# onEditFinish()}"];
 
-    MainActivity->SubscriptionList[arrowhead="none"];
     ViewSubscriptionActivity->SubscriptionList[arrowhead="none"];
     ViewSubscriptionActivity->MainActivity[arrowhead="none"];
     SubscriptionModifyActivity->SubscriptionList[arrowhead="none"];
+
+    SubscriptionArrayAdapter[shape="record", label="{SubscriptionArrayAdapter||}"];
+    SubscriptionArrayAdapter->MainActivity[arrowhead="odiamond",taillabel="1"];
+    SubscriptionArrayAdapter->SubscriptionList[arrowhead="none"];
 
     EditSubscriptionActivity[shape=record,label="{EditSubscriptionActivity||}"];
     NewSubscriptionActivity[shape=record,label="{NewSubscriptionActivity||}"];

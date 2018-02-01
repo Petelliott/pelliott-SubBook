@@ -19,8 +19,9 @@ import java.util.ArrayList;
  * NOTE: be sure to account for the total in your onclick listener
  */
 
-// the idea for this class and its layout from:
+// the idea for this class from:
 // https://github.com/codepath/android-custom-array-adapter-demo
+// 2018-01-20 (no code copied)
 
 public class SubscriptionArrayAdapter extends ArrayAdapter<Subscription> {
 

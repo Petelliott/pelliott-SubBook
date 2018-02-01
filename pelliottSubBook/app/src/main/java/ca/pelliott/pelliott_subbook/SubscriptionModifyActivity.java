@@ -25,12 +25,14 @@ public abstract class SubscriptionModifyActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // from https://developer.android.com/guide/topics/ui/menus.html
+        // 2018-01-22 (Apache 2.0)
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.edit_sub_menu, menu);
         return true;
     }
 
     // from https://developer.android.com/guide/topics/ui/menus.html
+    // 2018-01-22 (Apache 2.0)
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

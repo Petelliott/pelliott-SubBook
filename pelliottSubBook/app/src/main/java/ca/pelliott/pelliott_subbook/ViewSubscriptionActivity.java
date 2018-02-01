@@ -84,12 +84,14 @@ public class ViewSubscriptionActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // from https://developer.android.com/guide/topics/ui/menus.html
+        // 2018-01-23 (Apache 2.0)
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.view_sub_menu, menu);
         return true;
     }
 
     // from https://developer.android.com/guide/topics/ui/menus.html
+    // 2018-01-23 (Apache 2.0)
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -97,7 +99,7 @@ public class ViewSubscriptionActivity extends AppCompatActivity {
                 AlertDialog.Builder confirm = new AlertDialog.Builder(this);
                 confirm.setMessage("are you sure you want to delete this Subscription?");
 
-                // idea from http://jymden.com/android-simple-confirm-dialog/
+                // idea from http://jymden.com/android-simple-confirm-dialog/ (2018-01-23)
                 confirm.setPositiveButton("delete", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
