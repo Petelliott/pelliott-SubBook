@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/pelliottSubBook.iml" filepath="$PROJECT_DIR$/pelliottSubBook.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pelliott-SubBook.iml" filepath="$PROJECT_DIR$/pelliott-SubBook.iml" />
     </modules>
   </component>
 </project>
