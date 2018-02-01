@@ -21,7 +21,7 @@ import java.util.ArrayList;
 
 // the idea for this class from:
 // https://github.com/codepath/android-custom-array-adapter-demo
-// 2018-01-20 (no code copied)
+// 2018-01-20 (no code copied) (MIT)
 
 public class SubscriptionArrayAdapter extends ArrayAdapter<Subscription> {
 
