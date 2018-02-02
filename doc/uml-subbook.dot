@@ -21,6 +21,9 @@ digraph G {
     ViewSubscriptionActivity->MainActivity[arrowhead="none"];
     SubscriptionModifyActivity->SubscriptionList[arrowhead="none"];
 
+    ArrayAdapter[shape="record", label="{ArrayAdapter\<Subscription\>||+ getView()\l+ getCount()\l}"];
+    SubscriptionArrayAdapter->ArrayAdapter[arrowhead="onormal"];
+
     SubscriptionArrayAdapter[shape="record", label="{SubscriptionArrayAdapter||+ SubscriptionArrayAdapter()\l+ getView()\l+ getCount()\l}"];
     SubscriptionArrayAdapter->MainActivity[arrowhead="odiamond",taillabel="1"];
     SubscriptionArrayAdapter->SubscriptionList[arrowhead="none"];
