@@ -1,34 +1,41 @@
 digraph G {
+    splines=ortho;
+
     Subscription[
         shape=record
-        label="{Subscription|- name : String\l- date : Date\l- charge : double\l- comment : String|+ setName()\l+ setDate()\l+ setCharge()\l+ setComment()\l+ getName()\l+ getDate()\l+ getCharge()\l+ getComment()}"
+        label="{Subscription|- name : String\l- date : Date\l- charge : double\l- comment : String|+ Subscription()\l+ setName()\l+ setDate()\l+ setCharge()\l+ setComment()\l+ getName()\l+ getDate()\l+ getCharge()\l+ getComment()\l}"
     ];
 
     SubscriptionList[
         shape=record
-        label="{SubscriptionList||+ getSubscr()\l+ addSubscr()\l+ remove()\l+ getArray()\l- save()\l- load()}"
+        label="{SubscriptionList||- SubscriptionList()\l+ getInstance()\l+ getSubscr()\l+ addSubscr()\l+ remove()\l+ getArray()\l- save()\l- load()\l}"
     ];
 
     Subscription->SubscriptionList[arrowhead="odiamond",taillabel = "0..*"];
 
-    MainActivity[shape=record,label="{MainActivity||}"];
-    ViewSubscriptionActivity[shape=record,label="{ViewSubscriptionActivity||}"];
-    SubscriptionModifyActivity[shape=record,label="{SubscriptionModifyActivity||# onEditFinish()}"];
+    MainActivity[shape=record,label="{MainActivity||# onCreate\l# onResume()}"];
+    ViewSubscriptionActivity[shape=record,label="{ViewSubscriptionActivity||# onCreate()\l+ onResume()\l- showSubscription()\l+ onCreateOptionsMenu()\l+ onOptionsItemSelected()\l}"];
+    SubscriptionModifyActivity[shape=record,label="{SubscriptionModifyActivity||# onEditFinish()\l# onCreate()\l+ onCreateOptionsMenu()\l+ onOptionsItemSelected()\l+ makeSnackBar()\l}"];
 
     ViewSubscriptionActivity->SubscriptionList[arrowhead="none"];
     ViewSubscriptionActivity->MainActivity[arrowhead="none"];
     SubscriptionModifyActivity->SubscriptionList[arrowhead="none"];
 
-    SubscriptionArrayAdapter[shape="record", label="{SubscriptionArrayAdapter||}"];
+    SubscriptionArrayAdapter[shape="record", label="{SubscriptionArrayAdapter||+ SubscriptionArrayAdapter()\l+ getView()\l+ getCount()\l}"];
     SubscriptionArrayAdapter->MainActivity[arrowhead="odiamond",taillabel="1"];
     SubscriptionArrayAdapter->SubscriptionList[arrowhead="none"];
 
-    EditSubscriptionActivity[shape=record,label="{EditSubscriptionActivity||}"];
-    NewSubscriptionActivity[shape=record,label="{NewSubscriptionActivity||}"];
+    EditSubscriptionActivity[shape=record,label="{EditSubscriptionActivity||# onEditFinish()\l# onCreate()\l}"];
+    NewSubscriptionActivity[shape=record,label="{NewSubscriptionActivity||# onEditFinish()\l}"];
 
     EditSubscriptionActivity->SubscriptionModifyActivity[arrowhead="onormal"];
     NewSubscriptionActivity->SubscriptionModifyActivity[arrowhead="onormal"];
 
     NewSubscriptionActivity->MainActivity[arrowhead="none"];
     EditSubscriptionActivity->ViewSubscriptionActivity[arrowhead="none"];
+
+    Activity[shape=record,label="{AppCompatActivity||# onCreate()\l# onResume()\l# onCreateOptionsMenu()\l# onOptionsItemSelected()\l}"];
+    MainActivity->Activity[arrowhead="onormal"];
+    ViewSubscriptionActivity->Activity[arrowhead="onormal"];
+    SubscriptionModifyActivity->Activity[arrowhead="onormal"];
 }
