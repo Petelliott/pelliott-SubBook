@@ -4,10 +4,11 @@
  *
  * Feb 01, 2018
  *
- * Copyright (c) 2018 Peter Elliott, CMPUT301, University of Alberta - All rights Reserved
- * you may use, distribute or modify this code under terms and conditions of Code of Student
- * Behavior at University of Alberta
- * you can find a copy of the license in this project. Otherwise, please contact contact@abc.ca
+ * Copyright (c) 2018 Peter Elliott, CMPUT301, University of Alberta - All
+ * rights Reserved you may use, distribute or modify this code under terms and
+ * conditions of Code of Student Behavior at University of Alberta you can find
+ * a copy of the license in this project. Otherwise, please contact
+ * pelliott@ualberta.ca
  */
 package ca.pelliott.pelliott_subbook;
 
@@ -28,7 +29,7 @@ import java.util.ArrayList;
 
 /**
  * A singleton that holds multiple Subscriptions and saves them on changes
- * and reloads on creation
+ * and reloads on creation.
  *
  * @author pelliott
  * @version 1.0
@@ -36,16 +37,29 @@ import java.util.ArrayList;
  * @see Subscription
  */
 public class SubscriptionList {
+    /**
+     * the single instance of SubscriptionList.
+     */
     private static SubscriptionList instance = null;
 
+    /**
+     * the internal Arraylist of Subscriptions.
+     */
     private ArrayList<Subscription> sublist;
+    /**
+     * the context that is used for saving.
+     */
     private Context context;
 
-    private final String FILENAME = "ca.pelliott.pelliott_subbook.SubscriptionList.sav";
+    /**
+     * the filename that the arraylist will be stored to.
+     */
+    private static final String FILENAME =
+            "ca.pelliott.pelliott_subbook.SubscriptionList.sav";
 
     /**
      * takes and android context in order to save data
-     * private so we can control as singleton
+     * private so we can control as singleton.
      *
      * @param context an android Context
      */
@@ -55,7 +69,7 @@ public class SubscriptionList {
     }
 
     /**
-     * handles instantiating Subscriptionlist as singleton
+     * handles instantiating Subscriptionlist as singleton.
      *
      * @param context an android Context
      * @return the current instance of SubscriptionList
@@ -68,7 +82,7 @@ public class SubscriptionList {
     }
 
     /**
-     * gets a Subscription by it's integer index
+     * gets a Subscription by it's integer index.
      *
      * @param index the index in the list
      * @return the Subscription at Index
@@ -79,7 +93,7 @@ public class SubscriptionList {
 
     /**
      * adds a subscription to the list (at the end)
-     * and saves the data
+     * and saves the data.
      *
      * @param sub the Subscription
      */
@@ -89,10 +103,10 @@ public class SubscriptionList {
     }
 
     /**
-     * removes a subscription by it's index
+     * removes a subscription by it's index.
      * WARNING: this will invalidate all indexes you have out in the wild
      *
-     * @param index
+     * @param index the index to remove
      */
     public void remove(int index) {
         sublist.remove(index);
@@ -100,10 +114,10 @@ public class SubscriptionList {
     }
 
     /**
-     * removes a subscription by it's value
+     * removes a subscription by it's value.
      * WARNING: this will invalidate all indexes you have out in the wild
      *
-     * @param sub
+     * @param sub the subscription to remove
      */
     public void remove(Subscription sub) {
         sublist.remove(sub);
@@ -111,8 +125,8 @@ public class SubscriptionList {
     }
 
     /**
-     * gets the underlying subscription ArrayList, in case you need more specific acess
-     *
+     * gets the underlying subscription ArrayList.
+     * used when you need more specific access
      *
      * @return sublist the underlying ArrayList
      * @see SubscriptionArrayAdapter
@@ -131,7 +145,8 @@ public class SubscriptionList {
 
             //from https://stackoverflow.com/questions/12384064/gson-convert-from-json-to-a-typed-arraylist
             //26-01-2018 (CC-BY-SA)
-            sublist = gson.fromJson(in, new TypeToken<ArrayList<Subscription>>(){}.getType());
+            sublist = gson.fromJson(in,
+                    new TypeToken<ArrayList<Subscription>>(){}.getType());
 
 
         } catch (FileNotFoundException e) {
@@ -142,7 +157,7 @@ public class SubscriptionList {
     }
 
     /**
-     * saves the data to FILENAME
+     * saves the data to FILENAME.
      */
     private void save() {
         // this is adapted from the lab 26-01-2018

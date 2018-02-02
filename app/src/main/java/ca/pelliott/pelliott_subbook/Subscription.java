@@ -4,10 +4,11 @@
  *
  * Feb 01, 2018
  *
- * Copyright (c) 2018 Peter Elliott, CMPUT301, University of Alberta - All rights Reserved
- * you may use, distribute or modify this code under terms and conditions of Code of Student
- * Behavior at University of Alberta
- * you can find a copy of the license in this project. Otherwise, please contact contact@abc.ca
+ * Copyright (c) 2018 Peter Elliott, CMPUT301, University of Alberta - All
+ * rights Reserved you may use, distribute or modify this code under terms and
+ * conditions of Code of Student Behavior at University of Alberta you can find
+ * a copy of the license in this project. Otherwise, please contact
+ * pelliott@ualberta.ca
  */
 package ca.pelliott.pelliott_subbook;
 
@@ -16,24 +17,45 @@ import java.security.InvalidParameterException;
 import java.util.Date;
 
 /**
- * Subscription holds relevant data and enforces type restrictions
+ * Subscription holds relevant data and enforces type restrictions.
  *
  * @author pelliott
  * @version 1.0
  *
  * @see SubscriptionList
  */
-public class Subscription implements Serializable{
-    private String name;  // max 20 characters
+public class Subscription implements Serializable {
+    /**
+     * stores a name.
+     * between 1 and 20 characters inclusive.
+     */
+    private String name;
+    /**
+     * stores the date a subscription was created.
+     */
     private Date date;
+    /**
+     * stores the monthly price of a subscription.
+     * non-negative
+     */
     private double charge;
-    private String comment;  // max 30 characters
+    /**
+     * 0-30 characters inclusive.
+     */
+    private String comment;
 
 
-    /* _setName, _setCharge, _setComment provide setters that are private so
-       that they can be used by the constructor and setName() */
+    /* setNameInternal, setChargeInternal, _setComment provide setters that
+    are private so that they can be used by the constructor and setName() */
 
-    private void _setName(String name) throws InvalidParameterException {
+    /**
+     * internal function for setting the name with proper restrictions.
+     *
+     * @param name the name
+     * @throws InvalidParameterException when restrictions are not met
+     */
+    private void setNameInternal(String name)
+            throws InvalidParameterException {
         if (name.length() < 1) {
             throw new InvalidParameterException("name cannot be empty");
         } else if (name.length() > 20) {
@@ -43,7 +65,14 @@ public class Subscription implements Serializable{
         }
     }
 
-    private void _setCharge(double charge) throws InvalidParameterException {
+    /**
+     * internal function for setting the charge with proper restrictions.
+     *
+     * @param charge the charge
+     * @throws InvalidParameterException when restrictions are not met
+     */
+    private void setChargeInternal(double charge)
+            throws InvalidParameterException {
         if (charge < 0.0) {
             throw new InvalidParameterException("charge cannot be negative");
         } else {
@@ -51,7 +80,14 @@ public class Subscription implements Serializable{
         }
     }
 
-    private void _setComment(String comment) throws InvalidParameterException {
+    /**
+     * internal function for setting the comment with proper restrictions.
+     *
+     * @param comment the comment
+     * @throws InvalidParameterException when restrictions are not met
+     */
+    private void setCommentInternal(String comment)
+            throws InvalidParameterException {
         if (comment.length() > 30) {
             throw new InvalidParameterException("comment too long");
         } else {
@@ -60,34 +96,36 @@ public class Subscription implements Serializable{
     }
 
     /**
-     * constructor for Subscription with provided date
+     * constructor for Subscription with provided date.
      *
      * @param name less than 20 characters non empty
      * @param date a valid Date
      * @param charge non negative
      * @param comment less than 30 characters
-     * @throws InvalidParameterException thrown when varible conditions violated
+     * @throws InvalidParameterException thrown when any condition is violated
      */
-    public Subscription(String name, Date date, double charge, String comment) throws InvalidParameterException {
-        _setName(name);
+    public Subscription(String name, Date date, double charge, String comment)
+            throws InvalidParameterException {
+        setNameInternal(name);
         this.date = date;
-        _setCharge(charge);
-        _setComment(comment);
+        setChargeInternal(charge);
+        setCommentInternal(comment);
     }
 
     /**
-     * constructor for Subscription with current date
+     * constructor for Subscription with current date.
      *
      * @param name less than 20 characters non empty
      * @param charge non negative
      * @param comment less than 30 characters
-     * @throws InvalidParameterException thrown when varable conditions violated
+     * @throws InvalidParameterException thrown when any condition is violated
      */
-    public Subscription(String name, double charge, String comment) throws InvalidParameterException {
-        _setName(name);
+    public Subscription(String name, double charge, String comment)
+            throws InvalidParameterException {
+        setNameInternal(name);
         this.date = new Date();
-        _setCharge(charge);
-        _setComment(comment);
+        setChargeInternal(charge);
+        setCommentInternal(comment);
     }
 
     /**
@@ -95,7 +133,7 @@ public class Subscription implements Serializable{
      * @throws InvalidParameterException thrown when name condition violated
      */
     public void setName(String name) throws InvalidParameterException {
-        _setName(name);
+        setNameInternal(name);
     }
 
     /**
@@ -110,7 +148,7 @@ public class Subscription implements Serializable{
      * @throws InvalidParameterException thrown when charge condition violated
      */
     public void setCharge(double charge) throws InvalidParameterException {
-        _setCharge(charge);
+        setChargeInternal(charge);
     }
 
     /**
@@ -118,21 +156,41 @@ public class Subscription implements Serializable{
      * @throws InvalidParameterException thrown when comment condition violated
      */
     public void setComment(String comment) throws InvalidParameterException {
-        _setComment(comment);
+        setCommentInternal(comment);
     }
 
+    /**
+     * simple getter for name.
+     *
+     * @return this.name
+     */
     public String getName() {
         return this.name;
     }
 
+    /**
+     * simple getter for date.
+     *
+     * @return this.date
+     */
     public Date getDate() {
         return this.date;
     }
 
+    /**
+     * simple getter for charge.
+     *
+     * @return this.charge
+     */
     public double getCharge() {
         return this.charge;
     }
 
+    /**
+     * simple getter for comment.
+     *
+     * @return this.comment
+     */
     public String getComment() {
         return this.comment;
     }

@@ -4,10 +4,11 @@
  *
  * Feb 01, 2018
  *
- * Copyright (c) 2018 Peter Elliott, CMPUT301, University of Alberta - All rights Reserved
- * you may use, distribute or modify this code under terms and conditions of Code of Student
- * Behavior at University of Alberta
- * you can find a copy of the license in this project. Otherwise, please contact contact@abc.ca
+ * Copyright (c) 2018 Peter Elliott, CMPUT301, University of Alberta - All
+ * rights Reserved you may use, distribute or modify this code under terms and
+ * conditions of Code of Student Behavior at University of Alberta you can find
+ * a copy of the license in this project. Otherwise, please contact
+ * pelliott@ualberta.ca
  */
 package ca.pelliott.pelliott_subbook;
 
@@ -17,13 +18,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.EditText;
-
-import java.security.InvalidParameterException;
 
 /**
- * SubscriptionModifyActivity provides an abstract class for the subscription editing screen
- * used by EditSubscriptionActivity and NewSubscriptionActivity
+ * SubscriptionModifyActivity provides an abstract class for the subscription
+ * editing screen used by EditSubscriptionActivity and NewSubscriptionActivity.
  *
  * @author pelliott
  * @version 1.0
@@ -32,12 +30,24 @@ import java.security.InvalidParameterException;
  * @see EditSubscriptionActivity
  */
 public abstract class SubscriptionModifyActivity extends AppCompatActivity {
+
+    /**
+     * creates the Activity.
+     *
+     * @param savedInstanceState unused
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_subscription);
     }
 
+    /**
+     * creates the option menu.
+     *
+     * @param menu the menu to be inflated
+     * @return unused (true)
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // from https://developer.android.com/guide/topics/ui/menus.html
@@ -48,7 +58,14 @@ public abstract class SubscriptionModifyActivity extends AppCompatActivity {
     }
 
     // from https://developer.android.com/guide/topics/ui/menus.html
-    // 2018-01-22 (Apache 2.0)
+    // 2018-01-22
+
+    /**
+     * handles clicking an option item.
+     *
+     * @param item the item the user has clicked
+     * @return a boolean indicating if an item was clicked
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -61,20 +78,21 @@ public abstract class SubscriptionModifyActivity extends AppCompatActivity {
     }
 
     /**
-     * displays a SnackBar with the String message
+     * displays a SnackBar with the String message.
      *
      * @param message the snackbar string
      */
     public void makeSnackBar(String message) {
         Snackbar snackbar;
-        snackbar = Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_LONG);
+        snackbar = Snackbar.make(findViewById(android.R.id.content),
+                message, Snackbar.LENGTH_LONG);
         snackbar.setAction("Action", null);
         snackbar.show();
     }
 
     /**
      * called by onOptionsItemSelected when the user presses the checkmark
-     * defined by subclasses
+     * defined by subclasses.
      */
     protected abstract void onEditFinish();
 }

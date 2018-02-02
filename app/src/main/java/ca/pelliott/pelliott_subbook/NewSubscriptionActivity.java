@@ -4,10 +4,11 @@
  *
  * Feb 01, 2018
  *
- * Copyright (c) 2018 Peter Elliott, CMPUT301, University of Alberta - All rights Reserved
- * you may use, distribute or modify this code under terms and conditions of Code of Student
- * Behavior at University of Alberta
- * you can find a copy of the license in this project. Otherwise, please contact contact@abc.ca
+ * Copyright (c) 2018 Peter Elliott, CMPUT301, University of Alberta - All
+ * rights Reserved you may use, distribute or modify this code under terms and
+ * conditions of Code of Student Behavior at University of Alberta you can find
+ * a copy of the license in this project. Otherwise, please contact
+ * pelliott@ualberta.ca
  */
 package ca.pelliott.pelliott_subbook;
 
@@ -20,7 +21,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * NewSubscriptionActivity lets the user create a new subscription and add it to SubscriptionList
+ * NewSubscriptionActivity lets the user create a new subscription and add
+ * it to SubscriptionList.
  *
  * @author pelliott
  * @version 1.0
@@ -30,7 +32,7 @@ import java.util.Date;
 public class NewSubscriptionActivity extends SubscriptionModifyActivity {
 
     /**
-     * creates a new Subscription if all checks pass, then ends the activity
+     * creates a new Subscription if all checks pass, then ends the activity.
      */
     @Override
     protected void onEditFinish() {
@@ -44,7 +46,7 @@ public class NewSubscriptionActivity extends SubscriptionModifyActivity {
         double price;
         try {
             price = Double.parseDouble(editprice.getText().toString());
-        } catch(NumberFormatException e) {
+        } catch (NumberFormatException e) {
             makeSnackBar("must enter a valid price");
             return;
         }
@@ -66,7 +68,7 @@ public class NewSubscriptionActivity extends SubscriptionModifyActivity {
         Subscription sub;
         try {
             sub = new Subscription(name, date, price, comment);
-        } catch(InvalidParameterException e) {
+        } catch (InvalidParameterException e) {
             makeSnackBar(e.getMessage());
             return;
         }

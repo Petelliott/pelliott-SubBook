@@ -4,10 +4,11 @@
  *
  * Feb 01, 2018
  *
- * Copyright (c) 2018 Peter Elliott, CMPUT301, University of Alberta - All rights Reserved
- * you may use, distribute or modify this code under terms and conditions of Code of Student
- * Behavior at University of Alberta
- * you can find a copy of the license in this project. Otherwise, please contact contact@abc.ca
+ * Copyright (c) 2018 Peter Elliott, CMPUT301, University of Alberta - All
+ * rights Reserved you may use, distribute or modify this code under terms and
+ * conditions of Code of Student Behavior at University of Alberta you can find
+ * a copy of the license in this project. Otherwise, please contact
+ * pelliott@ualberta.ca
  */
 package ca.pelliott.pelliott_subbook;
 
@@ -22,7 +23,7 @@ import android.widget.ListView;
 import static ca.pelliott.pelliott_subbook.EditSubscriptionActivity.SUBSCRIPTION_EXTRA;
 
 /**
- * MainActivity provides a list of subscriptions and an option to add more
+ * MainActivity provides a list of subscriptions and an option to add more.
  *
  * @author pelliott
  * @version 1.0
@@ -33,8 +34,16 @@ import static ca.pelliott.pelliott_subbook.EditSubscriptionActivity.SUBSCRIPTION
  */
 public class MainActivity extends AppCompatActivity {
 
+    /**
+     * the adapter that keeps track of SubscriptionList
+     */
     private SubscriptionArrayAdapter adapter;
 
+    /**
+     * creates the main activity.
+     *
+     * @param savedInstanceState the android Bundle of the state
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,20 +52,23 @@ public class MainActivity extends AppCompatActivity {
         ListView listview = (ListView) findViewById(R.id.ListView);
 
         // set the adapter
-        adapter = new SubscriptionArrayAdapter(this, SubscriptionList.getInstance(getBaseContext()).getArray());
+        adapter = new SubscriptionArrayAdapter(this,
+                SubscriptionList.getInstance(getBaseContext()).getArray());
         listview.setAdapter(adapter);
 
         // set the listener for list items
 
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapter, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> listadapter, View view,
+                                    int position, long id) {
 
                 if (position > 0) {
                     // handle total case
                     position -= 1;
 
-                    Intent intent = new Intent(view.getContext(), ViewSubscriptionActivity.class);
+                    Intent intent = new Intent(view.getContext(),
+                            ViewSubscriptionActivity.class);
                     intent.putExtra(SUBSCRIPTION_EXTRA, position);
 
                     startActivity(intent);
@@ -66,17 +78,22 @@ public class MainActivity extends AppCompatActivity {
 
         // set the listener for new subscriptions
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.floatingActionButton);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(
+                R.id.floatingActionButton);
 
         fab.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), NewSubscriptionActivity.class);
+                Intent intent = new Intent(v.getContext(),
+                        NewSubscriptionActivity.class);
 
                 startActivity(intent);
             }
         });
     }
 
+    /**
+     * reloads adapter on resume.
+     */
     @Override
     public void onResume() {
         super.onResume();

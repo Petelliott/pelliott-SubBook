@@ -4,21 +4,16 @@
  *
  * Feb 01, 2018
  *
- * Copyright (c) 2018 Peter Elliott, CMPUT301, University of Alberta - All rights Reserved
- * you may use, distribute or modify this code under terms and conditions of Code of Student
- * Behavior at University of Alberta
- * you can find a copy of the license in this project. Otherwise, please contact contact@abc.ca
+ * Copyright (c) 2018 Peter Elliott, CMPUT301, University of Alberta - All
+ * rights Reserved you may use, distribute or modify this code under terms and
+ * conditions of Code of Student Behavior at University of Alberta you can find
+ * a copy of the license in this project. Otherwise, please contact
+ * pelliott@ualberta.ca
  */
 package ca.pelliott.pelliott_subbook;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
 import android.widget.EditText;
 
 import java.security.InvalidParameterException;
@@ -38,9 +33,21 @@ import java.util.Date;
  */
 public class EditSubscriptionActivity extends SubscriptionModifyActivity {
 
-    public static final String SUBSCRIPTION_EXTRA = "ca.pelliott.SUBSCRIPTION_EXTRA";
+    /**
+     * the intent string for sending an int Subscription index.
+     */
+    public static final String SUBSCRIPTION_EXTRA =
+            "ca.pelliott.SUBSCRIPTION_EXTRA";
+    /**
+     * the subscription being edited.
+     */
     private Subscription sub;
 
+    /**
+     * creates the EditSubscription Activity.
+     *
+     * @param savedInstanceState the android bundle of the state.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +55,8 @@ public class EditSubscriptionActivity extends SubscriptionModifyActivity {
 
         Intent intent = getIntent();
 
-        sub = SubscriptionList.getInstance(getBaseContext()).getSubscr(intent.getIntExtra(SUBSCRIPTION_EXTRA, -1));
+        sub = SubscriptionList.getInstance(getBaseContext()).getSubscr(
+                intent.getIntExtra(SUBSCRIPTION_EXTRA, -1));
 
         // show the data from the edited subscription
 
@@ -80,7 +88,7 @@ public class EditSubscriptionActivity extends SubscriptionModifyActivity {
         double price;
         try {
             price = Double.parseDouble(editprice.getText().toString());
-        } catch(NumberFormatException e) {
+        } catch (NumberFormatException e) {
             makeSnackBar("must enter a valid price");
             return;
         }
@@ -104,7 +112,7 @@ public class EditSubscriptionActivity extends SubscriptionModifyActivity {
             sub.setComment(comment);
             sub.setCharge(price);
             sub.setDate(date);
-        } catch(InvalidParameterException e) {
+        } catch (InvalidParameterException e) {
             makeSnackBar(e.getMessage());
             return;
         }
@@ -112,5 +120,4 @@ public class EditSubscriptionActivity extends SubscriptionModifyActivity {
         setResult(RESULT_OK);
         finish();
     }
-
 }
