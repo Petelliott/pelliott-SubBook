@@ -1,3 +1,14 @@
+/* NewSubscriptionActivity
+ *
+ * Version 1.0
+ *
+ * Feb 01, 2018
+ *
+ * Copyright (c) 2018 Peter Elliott, CMPUT301, University of Alberta - All rights Reserved
+ * you may use, distribute or modify this code under terms and conditions of Code of Student
+ * Behavior at University of Alberta
+ * you can find a copy of the license in this project. Otherwise, please contact contact@abc.ca
+ */
 package ca.pelliott.pelliott_subbook;
 
 import android.widget.EditText;
@@ -9,11 +20,18 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * creates a new subscription and adds it to SubscriptionList
+ * NewSubscriptionActivity lets the user create a new subscription and add it to SubscriptionList
+ *
+ * @author pelliott
+ * @version 1.0
+ *
+ * @see SubscriptionModifyActivity
  */
-
 public class NewSubscriptionActivity extends SubscriptionModifyActivity {
 
+    /**
+     * creates a new Subscription if all checks pass, then ends the activity
+     */
     @Override
     protected void onEditFinish() {
         EditText editname    = (EditText) findViewById(R.id.editName);

@@ -1,3 +1,14 @@
+/* SubscriptionArrayAdapter
+ *
+ * Version 1.0
+ *
+ * Feb 01, 2018
+ *
+ * Copyright (c) 2018 Peter Elliott, CMPUT301, University of Alberta - All rights Reserved
+ * you may use, distribute or modify this code under terms and conditions of Code of Student
+ * Behavior at University of Alberta
+ * you can find a copy of the license in this project. Otherwise, please contact contact@abc.ca
+ */
 package ca.pelliott.pelliott_subbook;
 
 import android.content.Context;
@@ -11,18 +22,23 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+// the idea for this class from:
+// https://github.com/codepath/android-custom-array-adapter-demo
+// 2018-01-20 (no code copied) (MIT)
+
 /**
  * SubscriptionArrayAdapter is an ArrayAdapter<Subscription> that
  * displays arrays according to R.layout.sub_list_item
  * and displays the total price as the first element according to
  * R.layout.sub_list_total
- * NOTE: be sure to account for the total in your onclick listener
+ * NOTE: be sure to account for the total in your onclick
+ *
+ * @author pelliott
+ * @version 1.0
+ *
+ * @see ArrayAdapter
+ * @see Subscription
  */
-
-// the idea for this class from:
-// https://github.com/codepath/android-custom-array-adapter-demo
-// 2018-01-20 (no code copied) (MIT)
-
 public class SubscriptionArrayAdapter extends ArrayAdapter<Subscription> {
 
     private ArrayList<Subscription> subs;
@@ -38,7 +54,8 @@ public class SubscriptionArrayAdapter extends ArrayAdapter<Subscription> {
             // create the total list element
             if (view == null) {
                 // this line was modified from the afformentioned demo
-                view = LayoutInflater.from(getContext()).inflate(R.layout.sub_list_total, parent, false);
+                view = LayoutInflater.from(getContext()).inflate(R.layout.sub_list_total,
+                        parent, false);
                 // counter intuitive, but this disables clicking
                 view.setClickable(true);
             }

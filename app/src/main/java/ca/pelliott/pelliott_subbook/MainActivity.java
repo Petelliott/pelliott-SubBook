@@ -1,3 +1,14 @@
+/* MainActivity
+ *
+ * Version 1.0
+ *
+ * Feb 01, 2018
+ *
+ * Copyright (c) 2018 Peter Elliott, CMPUT301, University of Alberta - All rights Reserved
+ * you may use, distribute or modify this code under terms and conditions of Code of Student
+ * Behavior at University of Alberta
+ * you can find a copy of the license in this project. Otherwise, please contact contact@abc.ca
+ */
 package ca.pelliott.pelliott_subbook;
 
 import android.content.Intent;
@@ -10,6 +21,16 @@ import android.widget.ListView;
 
 import static ca.pelliott.pelliott_subbook.EditSubscriptionActivity.SUBSCRIPTION_EXTRA;
 
+/**
+ * MainActivity provides a list of subscriptions and an option to add more
+ *
+ * @author pelliott
+ * @version 1.0
+ *
+ * @see SubscriptionList
+ * @see NewSubscriptionActivity
+ * @see ViewSubscriptionActivity
+ */
 public class MainActivity extends AppCompatActivity {
 
     private SubscriptionArrayAdapter adapter;

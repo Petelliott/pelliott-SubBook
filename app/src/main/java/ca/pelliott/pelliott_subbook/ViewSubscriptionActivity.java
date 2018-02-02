@@ -1,3 +1,14 @@
+/* ViewSubscriptionActivity
+ *
+ * Version 1.0
+ *
+ * Feb 01, 2018
+ *
+ * Copyright (c) 2018 Peter Elliott, CMPUT301, University of Alberta - All rights Reserved
+ * you may use, distribute or modify this code under terms and conditions of Code of Student
+ * Behavior at University of Alberta
+ * you can find a copy of the license in this project. Otherwise, please contact contact@abc.ca
+ */
 package ca.pelliott.pelliott_subbook;
 
 import android.content.DialogInterface;
@@ -17,11 +28,17 @@ import java.text.SimpleDateFormat;
 
 import static ca.pelliott.pelliott_subbook.EditSubscriptionActivity.SUBSCRIPTION_EXTRA;
 
-/**
- * gets passed an index to display and provides the option to edit
- * as well as delete
- */
 
+/**
+ * ViewSubscriptionActivty gets passed, by intent, an index to display and provides
+ * the option to edit as well as delete
+ *
+ * @author pelliott
+ * @version 1.0
+ *
+ * @see MainActivity
+ * @see SubscriptionList
+ */
 public class ViewSubscriptionActivity extends AppCompatActivity {
     static final int EDIT_SUBSCRIPTION_REQUEST = 1;
 
@@ -56,6 +73,11 @@ public class ViewSubscriptionActivity extends AppCompatActivity {
         showSubcription(sub);
     }
 
+    /**
+     * displays the contents of a subscription to the view
+     *
+     * @param sub the subscription you wish to display
+     */
     private void showSubcription(Subscription sub) {
         TextView showName    = (TextView) findViewById(R.id.showName);
         TextView showComment = (TextView) findViewById(R.id.showComment);
@@ -78,7 +100,8 @@ public class ViewSubscriptionActivity extends AppCompatActivity {
 
         double percent = 100.0 * sub.getCharge() / total;
 
-        showInfo.setText(String.format("This subscription is %.0f%% of your monthly total", percent));
+        showInfo.setText(
+                String.format("This subscription is %.0f%% of your monthly total", percent));
     }
 
     @Override
