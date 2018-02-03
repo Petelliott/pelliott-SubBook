@@ -14,7 +14,7 @@ digraph G {
     Subscription->SubscriptionList[arrowhead="odiamond",taillabel = "0..*"];
 
     MainActivity[shape=record,label="{MainActivity||# onCreate\l# onResume()}"];
-    ViewSubscriptionActivity[shape=record,label="{ViewSubscriptionActivity||# onCreate()\l+ onResume()\l- showSubscription()\l+ onCreateOptionsMenu()\l+ onOptionsItemSelected()\l}"];
+    ViewSubscriptionActivity[shape=record,label="{ViewSubscriptionActivity|EDIT_SUBSCRIPTION_REQUEST : int|# onCreate()\l+ onResume()\l- showSubscription()\l+ onCreateOptionsMenu()\l+ onOptionsItemSelected()\l}"];
     SubscriptionModifyActivity[shape=record,label="{SubscriptionModifyActivity||# onEditFinish()\l# onCreate()\l+ onCreateOptionsMenu()\l+ onOptionsItemSelected()\l+ makeSnackBar()\l}"];
 
     ViewSubscriptionActivity->SubscriptionList[arrowhead="none"];
@@ -28,7 +28,7 @@ digraph G {
     SubscriptionArrayAdapter->MainActivity[arrowhead="odiamond",taillabel="1"];
     SubscriptionArrayAdapter->SubscriptionList[arrowhead="none"];
 
-    EditSubscriptionActivity[shape=record,label="{EditSubscriptionActivity||# onEditFinish()\l# onCreate()\l}"];
+    EditSubscriptionActivity[shape=record,label="{EditSubscriptionActivity|SUBSCRIPTION_EXTRA : String|# onEditFinish()\l# onCreate()\l}"];
     NewSubscriptionActivity[shape=record,label="{NewSubscriptionActivity||# onEditFinish()\l}"];
 
     EditSubscriptionActivity->SubscriptionModifyActivity[arrowhead="onormal"];
@@ -41,4 +41,7 @@ digraph G {
     MainActivity->Activity[arrowhead="onormal"];
     ViewSubscriptionActivity->Activity[arrowhead="onormal"];
     SubscriptionModifyActivity->Activity[arrowhead="onormal"];
+
+    Subscription->ViewSubscriptionActivity[arrowhead="odiamond", taillabel="1"];
+    Subscription->EditSubscriptionActivity[arrowhead="odiamond", taillabel="1"];
 }
